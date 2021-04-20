@@ -1,2 +1,2 @@
-# fransizcaogren
-www.fransizcaogren.com
+# Fransızca Öğren
+
