@@ -4,15 +4,15 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class AppLayout extends Component
+class FrontendLayout extends Component
 {
     /**
      * Get the view / contents that represents the component.
      *
      * @return \Illuminate\View\View
      */
-    public function render()
+    public function render(): \Illuminate\View\View
     {
-        return view('layouts.app');
+        return view('layouts.frontend');
     }
 }
