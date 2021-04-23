@@ -7,26 +7,55 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
     <livewireStyles/>
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
     <title>Document</title>
 </head>
 <body>
-<header class="h-14 bg-frblue_l-500 min-h-14 d-flex justify-between align-text-center pl-1 pr-1">
-    <div class="logo d-flex items-center">
-        <img class="max-h-14" src="{{ url('storage/statics/logo.svg') }}" alt="{{ getenv('APP_NAME') }}">
+<div class="flex w-screen h-screen text-gray-400 bg-gray-900">
+
+    <!-- Component Start -->
+    <div class="flex flex-col items-center w-16 pb-4 overflow-auto border-r border-gray-800 text-gray-500">
+        <a href="#">
+            <img class="w-10 h-10 m-4" src="{{ url('storage/statics/logo.svg') }}" alt="Fransızca Öğren">
+        </a>
+        <!--TODO: DASHBOARD MENU-->
     </div>
-    <div class="search">
-        <form action="" class="w-100 max-w-24 relative z-10">
-            <label for="search"></label>
-            <input type="text" id="search" placeholder="{{ __('Search') }}" name="search"/>
-        </form>
-    </div>
-    <div class="auth">
+    <div class="flex flex-col w-56 border-r border-gray-800">
+        <div class="flex items-center justify-between w-full h-16 px-4 border-b border-gray-800 hover:bg-gray-800">
+                        <span class="font-medium">
+                            <!--Todo: Current Page Title-->
+                        </span>
+        </div>
+        <div class="flex flex-col flex-grow p-4 overflow-auto">
+            <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
+                <span class="leading-none">
+                    <!--Todo: Current page sub menus-->
+                </span>
+            </a>
+        </div>
 
     </div>
-</header>
-
+    <div class="flex flex-col flex-grow">
+        <div class="flex items-center flex-shrink-0 h-16 px-8 border-b border-gray-800">
+            <h1 class="text-lg font-medium">Page Title</h1>
+            <button class="flex items-center justify-center h-10 px-4 ml-auto text-sm font-medium rounded hover:bg-gray-800">
+                login
+            </button>
+            <button class="flex items-center justify-center h-10 px-4 ml-2 text-sm font-medium bg-gray-800 rounded hover:bg-gray-700">
+                Register
+            </button>
+        </div>
+        <div class="flex-grow p-6 overflow-auto bg-gray-800">
+            <div class="grid grid-cols-3 gap-6">
+                <div class="h-24 col-span-3 bg-gray-700">
+                    Content
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Component End  -->
+</div>
 <script src="{{ mix('js/app.js')}}"></script>
 <livewireScripts/>
 </body>

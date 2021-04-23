@@ -2,7 +2,6 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
     purge: {
-        enabled: true,
         content:
             [
                 './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
@@ -15,7 +14,6 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['ui-sans-serif', 'system-ui'],
-                serif: ['ui-serif', 'Georgia'],
             },
             colors: {
                 frblack: {
@@ -226,4 +224,5 @@ module.exports = {
     },
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+    enabled: true,
 };
