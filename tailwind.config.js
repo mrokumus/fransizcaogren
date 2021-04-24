@@ -10,11 +10,14 @@ module.exports = {
                 './resources/views/**/*.blade.php',
             ],
     },
+    corePlugins: {
+        outline: false,
+    },
     theme: {
         extend: {
             fontFamily: {
-                'playfair-display': ['"Playfair Display"','serif'],
-                'quicksand': ['Quicksand','sans'],
+                'playfair-display': ['"Playfair Display"', 'serif'],
+                'quicksand': ['Quicksand', 'sans'],
             },
             colors: {
                 frblack: {
