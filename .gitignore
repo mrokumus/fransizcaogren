@@ -10,7 +10,8 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 /database
-/storage
+/storage/framework
+/storage/logs
 /public/storage
 /public/assets
 /tests

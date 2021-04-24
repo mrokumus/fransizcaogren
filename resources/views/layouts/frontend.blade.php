@@ -8,6 +8,7 @@
     <meta name="author" content=""/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <livewireStyles/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
     <title>Document</title>
 </head>
@@ -17,9 +18,15 @@
     <!-- Component Start -->
     <div class="flex flex-col items-center w-16 pb-4 overflow-auto border-r border-gray-800 text-gray-500">
         <a href="#">
-            <img class="w-10 h-10 m-4" src="{{ url('storage/statics/logo.svg') }}" alt="Fransızca Öğren">
+            <img class="w-12 h-15 m-2" src="{{ url('storage/statics/logo.svg') }}" alt="Fransızca Öğren">
         </a>
-        <!--TODO: DASHBOARD MENU-->
+        <div class="clearfix"></div>
+        @foreach($menuItems as $menuItem)
+            <a class="w-12 h-12 m-4" href="{{ $menuItem->slug }}">
+                <img class="menuIcon" src="{{ url('storage/statics/icons'). '/'. $menuItem->icon }}"/>
+                <span class="menuText absolute bg-frgreen-300 font-light ml-16 p-1 pl-2 pr-2 rounded-3xl text-frgreen-900 hidden">{{ $menuItem->title }}</span>
+            </a>
+        @endforeach
     </div>
     <div class="flex flex-col w-56 border-r border-gray-800">
         <div class="flex items-center justify-between w-full h-16 px-4 border-b border-gray-800 hover:bg-gray-800">
@@ -58,5 +65,10 @@
 </div>
 <script src="{{ mix('js/app.js')}}"></script>
 <livewireScripts/>
+<style>
+    .menuIcon:hover + .menuText {
+        display: block;
+    }
+</style>
 </body>
 </html>
