@@ -8,15 +8,17 @@
     <meta name="author" content=""/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <livewireStyles/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
     <title>Document</title>
 </head>
-<body>
+<body class="font-quicksand">
 <div class="flex w-screen h-screen text-gray-400 bg-gray-900">
-
     <!-- Component Start -->
-    <div class="flex flex-col items-center w-16 pb-4 overflow-auto border-r border-gray-800 text-gray-500">
+    <div class="flex flex-col items-center w-16 pb-4 overflow-auto border-r border-gray-800 text-gray-500 select-none">
         <a href="#">
             <img class="w-12 h-15 m-2" src="{{ url('storage/statics/logo.svg') }}" alt="Fransızca Öğren">
         </a>
@@ -28,9 +30,10 @@
             </a>
         @endforeach
     </div>
-    <div class="flex flex-col w-56 border-r border-gray-800">
+    <div class="flex flex-col w-72 border-r border-gray-800">
         <div class="flex items-center justify-between w-full h-16 px-4 border-b border-gray-800 hover:bg-gray-800">
                         <span class="font-medium">
+                            Üst Başlık
                             <!--Todo: Current Page Title-->
                         </span>
         </div>
@@ -38,10 +41,28 @@
             <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
                 <span class="leading-none">
                     <!--Todo: Current page sub menus-->
+                    Alt Başlık
+                </span>
+            </a>
+            <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
+                <span class="leading-none">
+                    <!--Todo: Current page sub menus-->
+                    Alt Başlık
+                </span>
+            </a>
+            <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
+                <span class="leading-none">
+                    <!--Todo: Current page sub menus-->
+                    Alt Başlık
+                </span>
+            </a>
+            <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
+                <span class="leading-none">
+                    <!--Todo: Current page sub menus-->
+                    Alt Başlık
                 </span>
             </a>
         </div>
-
     </div>
     <div class="flex flex-col flex-grow">
         <div class="flex items-center flex-shrink-0 h-16 px-8 border-b border-gray-800">

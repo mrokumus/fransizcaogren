@@ -13,7 +13,8 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['ui-sans-serif', 'system-ui'],
+                'playfair-display': ['"Playfair Display"','serif'],
+                'quicksand': ['Quicksand','sans'],
             },
             colors: {
                 frblack: {
