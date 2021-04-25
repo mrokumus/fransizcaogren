@@ -15,7 +15,8 @@
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
-    <title>Document</title>
+    @yield('css')
+    <title>@yield('title') | {{ getenv('APP_NAME') }}</title>
 </head>
 <body class="font-quicksand">
 <div class="flex w-screen h-screen text-gray-400 bg-frblue-700 text-white">
@@ -32,40 +33,7 @@
             </a>
         @endforeach
     </div>
-    <div class="flex flex-col w-72 border-r border-gray-800">
-        <div class="flex items-center justify-between w-full h-16 px-4 border-b border-gray-800 hover:bg-gray-800">
-                        <span class="font-medium">
-                            Üst Başlık
-                            <!--Todo: Current Page Title-->
-                        </span>
-        </div>
-        <div class="flex flex-col flex-grow p-4 overflow-auto">
-            <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
-                <span class="leading-none">
-                    <!--Todo: Current page sub menus-->
-                    Alt Başlık
-                </span>
-            </a>
-            <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
-                <span class="leading-none">
-                    <!--Todo: Current page sub menus-->
-                    Alt Başlık
-                </span>
-            </a>
-            <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
-                <span class="leading-none">
-                    <!--Todo: Current page sub menus-->
-                    Alt Başlık
-                </span>
-            </a>
-            <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
-                <span class="leading-none">
-                    <!--Todo: Current page sub menus-->
-                    Alt Başlık
-                </span>
-            </a>
-        </div>
-    </div>
+    @yield('left-side-bar')
     <div class="flex flex-col flex-grow">
         <div class="flex items-center flex-shrink-0 h-16 px-8 border-b border-gray-800">
             <h1 class="text-lg font-medium">Page Title</h1>
@@ -193,15 +161,16 @@
         </div>
         <div class="flex-grow p-6 overflow-auto bg-gray-800 bg-gradient-to-tr from-frblue-500 via-frblue-700 to-frblue-900">
             <div class="grid grid-cols-3 gap-6">
-                <div class="h-24 col-span-3 bg-gray-700">
-                    Content
+                <div class="h-24 col-span-3">
+                    @yield('content')
                 </div>
             </div>
         </div>
     </div>
     <!-- Component End  -->
 </div>
-<script src="{{ mix('js/app.js')}}"></script>
 <livewireScripts/>
+<script src="{{ mix('js/app.js')}}"></script>
+@yield('js')
 </body>
 </html>

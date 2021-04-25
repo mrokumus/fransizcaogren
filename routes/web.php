@@ -23,10 +23,25 @@ Route::middleware('set.locale')
             ->group(function () {
                 // Home route
                 Route::get('/', [App\Http\Livewire\Frontend\Home\Home::class, 'render']);
+                // Dictionary Route
+                Route::get('/dictionary', [App\Http\Livewire\Frontend\Dictionary\Dictionary::class, 'render'])->name('.dictionary.render');
+                // Conjugation Route
+                Route::get('/conjugation', [App\Http\Livewire\Frontend\Conjugation\Conjugation::class, 'render'])->name('.conjugation.render');
+                // Grammar Route
+                Route::get('/grammar', [App\Http\Livewire\Frontend\Grammar\Grammar::class, 'render'])->name('.grammar.render');
+                // Vocabulary Route
+                Route::get('/vocabulary', [App\Http\Livewire\Frontend\Vocabulary\Vocabulary::class, 'render'])->name('.vocabulary.render');
+                // Exams Route
+                Route::get('/exam', [App\Http\Livewire\Frontend\Exam\Exam::class, 'render'])->name('.exam.render');
+                // Culture Route
+                Route::get('/culture', [App\Http\Livewire\Frontend\Culture\Culture::class, 'render'])->name('.culture.render');
+                // Forum Route
+                Route::get('/forum', [App\Http\Livewire\Frontend\Forum\Forum::class, 'render'])->name('.forum.render');
+                // Blog Route
+                Route::get('/blog', [App\Http\Livewire\Frontend\Blog\Blog::class, 'render'])->name('.blog.render');
+                // Contact Route
+                Route::get('/contact', [App\Http\Livewire\Frontend\Contact\Contact::class, 'render'])->name('.contact.render');
             });
-        // Dictionary Route
-        Route::get('/dictionary', [App\Http\Livewire\Frontend\Dictionary\Dictionary::class, 'render'])->name('.dictionary.render');
-
 
         //ADMIN ROUTES
         Route::middleware(['auth:sanctum', 'verified',])
@@ -38,9 +53,6 @@ Route::middleware('set.locale')
                 Route::get('profile', [App\Http\Livewire\Backend\Profile\Profile::class, 'render'])->name('profile.render');
 
             });
-
-
-
 
 
     });

@@ -1,5 +1,5 @@
 <x-frontend-layout>
-    @section('title') {{ __('Home')}} @endsection
+    @section('title') {{ __('Vocabulary')}} @endsection
     @section('css') @endsection
     @section('js')  @endsection
     @section('left-side-bar')  @endsection
