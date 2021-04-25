@@ -37,9 +37,9 @@
                          </svg>
                     </span>
                         </a>
-                        @foreach($grammarMenuItems as $key => $secondLevelItem)
+                        @foreach( $grammarMenuItems as $key => $secondLevelItem)
                             @if( $firstLevelItem->id == $secondLevelItem->sub_menu_id)
-                                <div x-show="open" class="mt-2 space-y-2 px-7" role="menu"
+                                    <div x-show="open" class="mt-2 space-y-2 px-7 bg-gray-100" role="menu"
                                      aria-label="{{ $firstLevelItem->title }}">
                                     <a href="#"
                                        role="menuitem"
@@ -47,6 +47,31 @@
                                         {{ $secondLevelItem->title }}
                                     </a>
                                 </div>
+                                @foreach($grammarMenuItems as $key => $thirdLevelItem)
+                                    @if( $secondLevelItem->id == $thirdLevelItem->sub_menu_id)
+                                        <div x-show="open" class="mt-2 space-y-2 px-7  bg-frgreen_l-500" role="menu"
+                                             aria-label="{{ $thirdLevelItem->title }}">
+                                            <a href="#"
+                                               role="menuitem"
+                                               class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
+                                                {{ $thirdLevelItem->title }}
+                                            </a>
+                                        </div>
+                                        @foreach( $grammarMenuItems as $key => $fourthLevelItem)
+                                            @if( $thirdLevelItem->id == $fourthLevelItem->sub_menu_id)
+                                                <div x-show="open" class="mt-2 space-y-2 px-7  bg-frorange_l-500"
+                                                     role="menu"
+                                                     aria-label="{{ $fourthLevelItem->title }}">
+                                                    <a href="#"
+                                                       role="menuitem"
+                                                       class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
+                                                        {{ $fourthLevelItem->title }}
+                                                    </a>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                @endforeach
                             @endif
                         @endforeach
                     </div>

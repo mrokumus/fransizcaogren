@@ -21,7 +21,7 @@
 <body class="font-quicksand">
 <div class="flex w-screen h-screen text-gray-400 bg-frblue-700 text-white">
     <!-- Component Start -->
-    <div class="flex flex-col items-center w-16 pb-4 overflow-auto border-r border-gray-800 text-gray-500 select-none">
+    <div class="mini-menu flex flex-col items-center w-16 pb-4 overflow-auto border-r border-gray-800 text-gray-500 select-none">
         <a href="#">
             <img class="w-12 h-15 m-2" src="{{ url('storage/statics/logo.svg') }}" alt="Fransızca Öğren">
         </a>
@@ -36,7 +36,7 @@
     @yield('left-side-bar')
     <div class="flex flex-col flex-grow">
         <div class="flex items-center flex-shrink-0 h-16 px-8 border-b border-gray-800">
-            <h1 class="text-lg font-medium">Page Title</h1>
+            <h1 class="text-lg font-medium">@yield('title')</h1>
             <form action="" class="ml-auto mr-auto w-100">
                 <i class="absolute fa-search fas p-3 text-gray-900"></i>
                 <input type="text"
@@ -161,7 +161,7 @@
         </div>
         <div class="flex-grow p-6 overflow-auto bg-gray-800 bg-gradient-to-tr from-frblue-500 via-frblue-700 to-frblue-900">
             <div class="grid grid-cols-3 gap-6">
-                <div class="h-24 col-span-3">
+                <div class="col-span-3">
                     @yield('content')
                 </div>
             </div>

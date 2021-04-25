@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\Frontend\Home;
 
+use App\Models\Frontend\FrontendMenus;
 use Livewire\Component;
 
 class Home extends Component
 {
     public function render()
     {
-        return view('livewire.frontend.home.home');
+        $menuItems = FrontendMenus::all();
+        return view('livewire.frontend.home.home')
+            ->with('menuItems', $menuItems);
     }
 }
