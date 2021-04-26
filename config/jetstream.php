@@ -42,7 +42,8 @@ return [
     */
 
     'features' => [
-         Features::profilePhotos(),
+        Features::termsAndPrivacyPolicy(),
+        Features::profilePhotos(),
         Features::accountDeletion(),
     ],
 
@@ -58,5 +59,7 @@ return [
     */
 
     'profile_photo_disk' => 'public',
+
+    'path' =>'beta',
 
 ];

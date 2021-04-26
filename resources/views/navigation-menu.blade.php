@@ -17,7 +17,6 @@
                     </x-jet-nav-link>
                 </div>
             </div>
-
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
@@ -96,7 +95,7 @@
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                            <x-jet-dropdown-link href="{{ route('profile.render') }}">
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
 

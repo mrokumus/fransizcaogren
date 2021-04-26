@@ -227,7 +227,5 @@ module.exports = {
             opacity: ['active'],
         },
     },
-
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
-    enabled: true,
 };
