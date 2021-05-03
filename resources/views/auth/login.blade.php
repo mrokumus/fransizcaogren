@@ -14,7 +14,7 @@
         </div>
     @endif
     <div class="h-screen w-full flex justify-center items-center bg-gradient-to-tl from-frblue_l-300 via-frgreen_l-300 to-frred_l-300">
-        <div class="bg-image w-full sm:w-1/2 md:w-9/12 lg:w-1/2 mx-3 md:mx-5 lg:mx-0 shadow-md flex flex-col md:flex-row items-center rounded z-10 overflow-hidden">
+        <div class="bg-image w-full sm:w-1/2 md:w-9/12 lg:w-1/2 mx-3 md:mx-5 lg:mx-0 shadow-md flex flex-col md:flex-row items-center rounded z-10 overflow-hidden bg-white">
             <div class="w-full md:w-1/2 flex flex-col justify-center items-center bg-opacity-25 bg-blue-600 backdrop">
             </div>
             <div class="w-full md:w-1/2 flex flex-col items-center bg-white py-5 md:py-8 px-4">
