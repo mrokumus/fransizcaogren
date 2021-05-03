@@ -22,13 +22,13 @@ Route::middleware('set.locale')
         Route::name('home')
             ->group(function () {
                 // Home route
-                Route::get('/', [App\Http\Livewire\Frontend\Home\Home::class, 'render']);
+                Route::get('/', [App\Http\Livewire\Frontend\Home\Home::class, 'render'])->name('');
                 // Dictionary Route
                 Route::get('/dictionary', [App\Http\Livewire\Frontend\Dictionary\Dictionary::class, 'render'])->name('.dictionary.render');
                 // Conjugation Route
                 Route::get('/conjugation', [App\Http\Livewire\Frontend\Conjugation\Conjugation::class, 'render'])->name('.conjugation.render');
                 // Grammar Route
-                Route::get('/grammar', [App\Http\Livewire\Frontend\Grammar\Grammar::class, 'render'])->name('.grammar.render');
+                Route::get('/grammar/{slug?}', [App\Http\Livewire\Frontend\Grammar\Grammar::class, 'render'])->name('.grammar.render');
                 // Vocabulary Route
                 Route::get('/vocabulary', [App\Http\Livewire\Frontend\Vocabulary\Vocabulary::class, 'render'])->name('.vocabulary.render');
                 // Exams Route

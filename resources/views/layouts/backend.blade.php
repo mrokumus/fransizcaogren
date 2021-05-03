@@ -14,7 +14,7 @@
 <body class="font-sans antialiased">
 <div class="flex w-screen h-screen text-gray-400 bg-frblue-700 text-white">
     <div class="w-72 flex flex-col w-16 pb-4 overflow-auto border-r border-gray-800 text-gray-500 select-none">
-        <a href="#" class="flex items-center  justify-around">
+        <a href="{{ route('home') }}" class="flex items-center  justify-around">
             <img class="m-1 w-5" src="{{ url('storage/statics/logo.svg') }}" alt="Fransızca Öğren">
             <p class="text-2xl"> Fransızca Öğren</p>
         </a>
@@ -154,6 +154,7 @@
         <div class="flex-grow p-6 overflow-auto bg-gray-800 bg-gradient-to-tr from-frblue-500 via-frblue-700 to-frblue-900">
             <div class="grid grid-cols-3 gap-6">
                 <div class="col-span-3">
+                    {{ $slot ?? '' }}
                     @yield('content')
                 </div>
             </div>

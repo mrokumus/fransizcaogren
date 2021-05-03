@@ -2,22 +2,19 @@
 
 namespace App\Models\Frontend;
 
-use App\Models\Frontend\GrammarPosts;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Grammars extends Model
+class GrammarPosts extends Model
 {
     use HasFactory;
 
-    protected $table = 'grammar_menus';
+    protected $table = 'grammar_posts';
 
     protected $fillable = [
         'title',
         'slug',
-        'sub_slug',
-        'sub_menu_id',
-        'meta',
+        'summary',
+        'content',
     ];
-
 }
