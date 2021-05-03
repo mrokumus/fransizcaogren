@@ -2,11 +2,10 @@
     <style>
         .bg-image {
             /*TODO: Giriş ekran resmi dinamik*/
-            background-image: url(https://i.postimg.cc/13pssvxG/bg-image.png);
-        }
-
-        .backdrop {
-            backdrop-filter: blur(2px);
+            background-image: url({{ url('/storage/statics/login.svg') }});
+            background-repeat: no-repeat;
+            background-position:left;
+            background-size: 400px 400px;
         }
     </style>
     @if (session('status'))
@@ -15,11 +14,8 @@
         </div>
     @endif
     <div class="h-screen w-full flex justify-center items-center bg-gradient-to-tl from-frblue_l-300 via-frgreen_l-300 to-frred_l-300">
-        <div class="bg-image w-full sm:w-1/2 md:w-9/12 lg:w-1/2 mx-3 md:mx-5 lg:mx-0 shadow-md flex flex-col md:flex-row items-center rounded z-10 overflow-hidden bg-center bg-cover bg-blue-600">
+        <div class="bg-image w-full sm:w-1/2 md:w-9/12 lg:w-1/2 mx-3 md:mx-5 lg:mx-0 shadow-md flex flex-col md:flex-row items-center rounded z-10 overflow-hidden">
             <div class="w-full md:w-1/2 flex flex-col justify-center items-center bg-opacity-25 bg-blue-600 backdrop">
-                <h1 class="text-3xl md:text-4xl font:bold text-white my-2 md:my-0 p-2 pt-4 pb-4">
-                    {{ getenv('APP_NAME') . ' | ' . __('BETA') }}
-                </h1>
             </div>
             <div class="w-full md:w-1/2 flex flex-col items-center bg-white py-5 md:py-8 px-4">
                 <h3 class="mb-4 font-bold text-3xl flex items-center text-blue-500">
@@ -31,7 +27,7 @@
                     @if ($errors->has('email'))
                         <div class="bg-frred-100 m-0 p-0 p-2 rounded text-frred-500 text-xs w-full">
                             <ul>
-                                @foreach ($errors->all() as $error)
+                                @foreach ($errors->get('email') as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
@@ -46,7 +42,7 @@
                     @if ($errors->has('password'))
                         <div class="bg-frred-100  m-0 p-0 p-2 rounded text-frred-500 text-xs w-full">
                             <ul>
-                                @foreach ($errors->all() as $error)
+                                @foreach ($errors->get('password') as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
