@@ -10,7 +10,7 @@
     @endsection
     @section('js')  @endsection
     @section('left-side-bar')
-        <div class="w-72 flex flex-col w-16 pb-4 overflow-auto border-r border-gray-800 text-gray-500 select-none">
+        <div class="w-72 flex flex-col w-16 pb-4 overflow-auto border-r border-gray-800 text-gray-500 select-none hidden md:block">
             <a href="#" class="flex items-center  justify-around">
                 <img class="m-1 w-5" src="{{ url('storage/statics/logo.svg') }}" alt="Fransızca Öğren">
                 <p class="text-2xl"> Fransızca Öğren</p>

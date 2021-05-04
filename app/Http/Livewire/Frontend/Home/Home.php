@@ -13,4 +13,8 @@ class Home extends Component
         return view('livewire.frontend.home.home')
             ->with('menuItems', $menuItems);
     }
+    public function renderr()
+    {
+        return view('livewire.frontend.home.homee');
+    }
 }

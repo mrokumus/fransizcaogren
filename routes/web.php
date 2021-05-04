@@ -23,6 +23,7 @@ Route::middleware('set.locale')
             ->group(function () {
                 // Home route
                 Route::get('/', [App\Http\Livewire\Frontend\Home\Home::class, 'render'])->name('');
+                Route::get('/deneme', [App\Http\Livewire\Frontend\Home\Home::class, 'renderr'])->name('r');
                 // Dictionary Route
                 Route::get('/dictionary', [App\Http\Livewire\Frontend\Dictionary\Dictionary::class, 'render'])->name('.dictionary.render');
                 // Conjugation Route
