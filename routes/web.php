@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Http\Controllers\Livewire\UserProfileController;
 
 Route::get('/migrate', function () {
     Artisan::call('migrate:refresh');
@@ -53,6 +54,8 @@ Route::middleware('set.locale')
                 Route::get('/', [App\View\Components\BackendLayout::class, 'render'])->name('dashboard');
                 //Profile
                 Route::get('profile', [App\Http\Livewire\Backend\Profile\Profile::class, 'render'])->name('profile.render');
+                Route::get('profile/edit', [App\Http\Livewire\Backend\Profile\Edit::class, 'render'])->name('profile.edit');
+                Route::get('settings', [App\Http\Livewire\Backend\Profile\Setting::class, 'render'])->name('profile.setting.render');
 
             });
 

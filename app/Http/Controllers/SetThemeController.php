@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Session;
 
 class SetThemeController extends Controller
@@ -11,10 +10,11 @@ class SetThemeController extends Controller
     {
         if (isset(auth()->user()->id) && isset($theme)) {
             Session::put('theme', $theme);
-            User::where('id', auth()->user()->id)
-                ->update(['preferred_theme' => $theme]);
-        } elseif (isset(auth()->user()->preferred_theme)) {
-            Session::put('theme', auth()->user()->preferred_theme);
+            auth()->user()->preferences()->update([
+                'theme' => $theme,
+            ]);
+        } elseif (isset(auth()->user()->preferences->theme)) {
+            Session::put('theme', auth()->user()->preferences->theme);
         } else {
             Session::put('theme', $theme);
         }

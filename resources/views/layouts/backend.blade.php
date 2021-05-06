@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading {{ session()->has('theme') ? session()->get('theme') : auth()->user()->preferred_theme }}"
+<html class="loading {{ session()->has('theme') ? session()->get('theme') : auth()->user()->preferences->theme }}"
       lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-textdirection="ltr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,7 +8,7 @@
     <meta name="description" content="{{--TODO: Description--}}">
     <meta name="keywords" content="{{--TODO: Keywords--}}">
     <meta name="author" content="{{ getenv('APP_NAME') }}">
-    <title>@yield('title') | Beta - FO</title>
+    <title>@yield('title') | BETA | Fransızca Öğren</title>
     <link rel="apple-touch-icon" href="{{ url('storage/statics/logo.svg') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ url('storage/statics/logo.svg') }}">
     <!-- BEGIN: Vendor CSS-->
@@ -80,14 +80,12 @@
                     </div>
                 </li>
             @endif
-
-            {{--Todo:Set theme option--}}
             <li class="nav-item">
-                @if( auth()->user()->preferred_theme == 'light-layout')
+                @if( auth()->user()->preferences->theme == 'light-layout')
                     <a class="nav-link nav-link-style" href="{{ route('set.theme','dark-layout') }}">
                         <i class="ficon" data-feather="moon"></i>
                     </a>
-                @elseif( auth()->user()->preferred_theme == 'dark-layout')
+                @elseif( auth()->user()->preferences->theme == 'dark-layout')
                     <a class="nav-link nav-link-style" href="{{ route('set.theme','light-layout') }}">
                         <i class="ficon" data-feather="moon"></i>
                     </a>
@@ -106,11 +104,11 @@
                     <ul class="search-list search-list-main"></ul>
                 </div>
             </li>
+            {{--todo:notification --}}
             <li class="nav-item dropdown dropdown-notification mr-25"><a class="nav-link" href="javascript:void(0);"
                                                                          data-toggle="dropdown"><i class="ficon"
                                                                                                    data-feather="bell"></i><span
                             class="badge badge-pill badge-danger badge-up">5</span></a>
-                {{--todo:notification --}}
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                     <li class="dropdown-menu-header">
                         <div class="dropdown-header d-flex">
@@ -214,29 +212,32 @@
                    data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
                     <div class="user-nav d-sm-flex d-none">
-                        <span class="user-name font-weight-bolder">John Doe</span>
-                        <span class="user-status">Admin</span>
+                        <span class="user-name font-weight-bolder">{{ auth()->user()->name }}</span>
+                        <span class="user-status">{{ auth()->user()->preferences->username }}</span>
                     </div>
                     <span class="avatar">
-                        <img class="round" src="../../../app-assets/images/portrait/small/avatar-s-11.jpg"
+                        <img class="round" src="{{ url('storage/avatars' .'/' . auth()->user()->profile_photo_path) }}"
                              alt="avatar" height="40" width="40">
-                        <span class="avatar-status-online"></span>
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-                    <a class="dropdown-item" href="page-profile.html">
+                    <a class="dropdown-item" href="{{ route('profile.render') }}">
                         <i class="mr-50" data-feather="user"></i>
-                        Profile
+                        {{ __('Profile') }}
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="page-account-settings.html">
+                    <a class="dropdown-item" href="{{ route('profile.setting.render')}}">
                         <i class="mr-50" data-feather="settings"></i>
-                        Settings
+                        {{ __('Settings') }}
                     </a>
-                    <a class="dropdown-item" href="page-auth-login-v2.html">
-                        <i class="mr-50" data-feather="power"></i>
-                        Logout
-                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a class="dropdown-item"
+                           onclick="event.preventDefault();this.closest('form').submit();">
+                            <i class="mr-50" data-feather="power"></i>
+                            {{ __('Logout') }}
+                        </a>
+                    </form>
                 </div>
             </li>
         </ul>
@@ -291,7 +292,7 @@
                 </li>
                 @endif
                 @if( $firstLevelItem->sub_menu_level == 1 AND $firstLevelItem->has_sub_menu == 0)
-                    <li class=" nav-item">
+                    <li class=" nav-item {{ url()->current() == rtrim(getenv('APP_URL') . getenv('DASH_URL') . $firstLevelItem->slug,'/') ? 'active' : ''}}">
                         <a class="d-flex align-items-center"
                            href="{{ getenv('DASH_URL'). $firstLevelItem->slug }}">
                             <i data-feather="{{ $firstLevelItem->icon }}"></i>
@@ -307,7 +308,7 @@
                         <ul class="menu-content">
                             @foreach($menuItems as $key =>$secondLevelItem)
                                 @if($secondLevelItem->has_sub_menu == 0 AND $firstLevelItem->id == $secondLevelItem->submenu_id)
-                                    <li>
+                                    <li class="{{ url()->current() == rtrim(getenv('APP_URL') . getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug ,'/') ? 'active' : ''}}">
                                         <a class="d-flex align-items-center"
                                            href="{{ getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug  }}">
                                             <i data-feather="{{ $secondLevelItem->icon }}"></i>
@@ -327,7 +328,7 @@
                                         <ul class="menu-content">
                                             @foreach( $menuItems as $key => $thirdLevelItem)
                                                 @if($thirdLevelItem->submenu_id == $secondLevelItem->id)
-                                                    <li>
+                                                    <li class="{{ url()->current() == rtrim(getenv('APP_URL') . getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug . $thirdLevelItem->slug ,'/') ? 'active' : ''}}">
                                                         <a class="d-flex align-items-center"
                                                            href="{{ getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug . $thirdLevelItem->slug }}">
                                                         <span class="menu-item text-truncate">
