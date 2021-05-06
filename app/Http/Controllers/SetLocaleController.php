@@ -12,10 +12,11 @@ class SetLocaleController extends Controller
     {
         if (isset(auth()->user()->id) && isset($locale)) {
             Session::put('locale', $locale);
-            User::where('id', auth()->user()->id)
-                ->update(['preferred_language' => $locale]);
-        } elseif (isset(auth()->user()->preferred_language)) {
-            Session::put('locale', auth()->user()->preferred_language);
+            auth()->user()->preferences()->update([
+                'language' => $locale,
+            ]);
+        } elseif (isset(auth()->user()->preferences->language)) {
+            Session::put('locale', auth()->user()->preferences->language);
         } else {
             Session::put('locale', $locale);
         }

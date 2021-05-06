@@ -296,14 +296,14 @@
                         <a class="d-flex align-items-center"
                            href="{{ getenv('DASH_URL'). $firstLevelItem->slug }}">
                             <i data-feather="{{ $firstLevelItem->icon }}"></i>
-                            <span class="menu-title text-truncate" data-i18n="Email">{{ $firstLevelItem->title }}</span>
+                            <span class="menu-title text-truncate">{{ __($firstLevelItem->title )}}</span>
                         </a>
                     </li>
                 @elseif( $firstLevelItem->has_sub_menu == 1 AND $firstLevelItem->sub_menu_level == 1)
                     <li class=" nav-item">
                         <a class="d-flex align-items-center" href="#">
                             <i data-feather="{{ $firstLevelItem->icon }}"></i>
-                            <span class="menu-title text-truncate">{{ $firstLevelItem->title  }}</span>
+                            <span class="menu-title text-truncate">{{ __($firstLevelItem->title)  }}</span>
                         </a>
                         <ul class="menu-content">
                             @foreach($menuItems as $key =>$secondLevelItem)
@@ -313,7 +313,7 @@
                                            href="{{ getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug  }}">
                                             <i data-feather="{{ $secondLevelItem->icon }}"></i>
                                             <span class="menu-item text-truncate">
-                                                 {{ $secondLevelItem->title }}
+                                                 {{ __($secondLevelItem->title) }}
                                             </span>
                                         </a>
                                     </li>
@@ -332,7 +332,7 @@
                                                         <a class="d-flex align-items-center"
                                                            href="{{ getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug . $thirdLevelItem->slug }}">
                                                         <span class="menu-item text-truncate">
-                                                            {{ $thirdLevelItem->title }}
+                                                            {{ __($thirdLevelItem->title )}}
                                                         </span>
                                                         </a>
                                                     </li>
