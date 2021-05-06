@@ -14,5 +14,6 @@ Homestead.json
 /storage/logs
 /public/storage
 /public/assets
+/public/app-assets
 /tests
 .DS_Store
