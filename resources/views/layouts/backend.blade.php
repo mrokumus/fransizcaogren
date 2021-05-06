@@ -67,8 +67,9 @@
                     <a class="nav-link dropdown-toggle" id="dropdown-flag"
                        href="javascript:void(0);" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <i class="flag-icon flag-icon-{{ config('app.locale') }}"></i>
+                        <i class="flag-icon flag-icon-{{ !auth()->user()->preferences->language = null ? auth()->user()->preferences->language : config('app.locale') }}"></i>
                         <span class="selected-language">{{ strtoupper(config('app.locale')) }}</span>
+                        <span>{{ isset(auth()->user()->preferences->language) ? auth()->user()->preferences->language : 'ddee' }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-flag">
                         @foreach( config('app.locales') as $locale)
