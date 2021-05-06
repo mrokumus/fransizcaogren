@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Backend\BetaMenus;
 use Illuminate\View\Component;
 
 class BackendLayout extends Component
@@ -13,6 +14,9 @@ class BackendLayout extends Component
      */
     public function render()
     {
-        return view('layouts.backend');
+        $menuItems = BetaMenus::all();
+        return view('layouts.backend')
+            ->with('menuItems', $menuItems);
     }
+
 }
