@@ -12,6 +12,6 @@ class Show extends Component
     {
         $userId = UserPreference::where('username', $username)->get('user_id');
         $user = User::where('id', $userId[0]->user_id)->get();
-        return view('livewire.frontend.user.show')->with('user', $user);
+        return view('livewire.frontend.user.show')->with('user', $user[0]);
     }
 }
