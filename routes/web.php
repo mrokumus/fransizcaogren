@@ -44,6 +44,8 @@ Route::middleware('set.locale')
                 Route::get('/blog', [App\Http\Livewire\Frontend\Blog\Blog::class, 'render'])->name('.blog.render');
                 // Contact Route
                 Route::get('/contact', [App\Http\Livewire\Frontend\Contact\Contact::class, 'render'])->name('.contact.render');
+                // Show User
+                Route::get('/@{username}', [App\Http\Livewire\Frontend\User\Show::class, 'render'])->name('.user.render');
             });
 
         //ADMIN ROUTES

@@ -16,4 +16,9 @@ class UserPreference extends Model
         'preferred_language',
         'username'
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class,'id','user_id');
+    }
 }
