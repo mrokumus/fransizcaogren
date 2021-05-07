@@ -88,13 +88,19 @@
                         </a>
                     @elseif( auth()->user()->preferences->theme == 'dark-layout')
                         <a class="nav-link nav-link-style" href="{{ route('set.theme','light-layout') }}">
-                            <i class="ficon" data-feather="moon"></i>
+                            <i class="ficon" data-feather="sun"></i>
                         </a>
                     @endif
                 @else
-                    <a class="nav-link nav-link-style" href="{{ route('set.theme','dark-layout') }}">
-                        <i class="ficon" data-feather="moon"></i>
-                    </a>
+                    @if( session()->has('theme') AND session()->get('theme') == 'light-layout')
+                        <a class="nav-link nav-link-style" href="{{ route('set.theme','dark-layout') }}">
+                            <i class="ficon" data-feather="moon"></i>
+                        </a>
+                    @else
+                        <a class="nav-link nav-link-style" href="{{ route('set.theme','light-layout') }}">
+                            <i class="ficon" data-feather="sun"></i>
+                        </a>
+                    @endif
                 @endif
             </li>
             {{--Todo:Search in Admin--}}
@@ -316,6 +322,7 @@
             feather.replace({
                 width: 14,
                 height: 14,
+                'stroke-width': 1,
             });
         }
     })
