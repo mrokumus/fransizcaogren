@@ -81,7 +81,7 @@
                 </li>
             @endif
             <li class="nav-item">
-                @auth
+                @if( isset(auth()->user()->id))
                     @if( auth()->user()->preferences->theme == 'light-layout')
                         <a class="nav-link nav-link-style" href="{{ route('set.theme','dark-layout') }}">
                             <i class="ficon" data-feather="moon"></i>
@@ -91,11 +91,11 @@
                             <i class="ficon" data-feather="moon"></i>
                         </a>
                     @endif
-                @elseauth
+                @else
                     <a class="nav-link nav-link-style" href="{{ route('set.theme','dark-layout') }}">
                         <i class="ficon" data-feather="moon"></i>
                     </a>
-                @endauth
+                @endif
             </li>
             {{--Todo:Search in Admin--}}
             <li class="nav-item nav-search">
@@ -121,9 +121,10 @@
                             <span class="user-status">{{ auth()->user()->preferences->username }}</span>
                         </div>
                         <span class="avatar">
-                        <img class="round" src="{{ url('storage/avatars' .'/' . auth()->user()->profile_photo_path) }}"
-                             alt="avatar" height="40" width="40">
-                    </span>
+                                    <img class="round"
+                                         src="{{ url('storage/avatars' .'/' . auth()->user()->profile_photo_path) }}"
+                                         alt="avatar" height="40" width="40">
+                                </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                         <a class="dropdown-item" href="{{ route('profile.render') }}">
@@ -147,10 +148,12 @@
                 </li>
             @else
                 <a class="nav-link nav-link-style btn btn-secondary" href="{{ route('login') }}">
-                    <span>{{ __('Login') }}</span>
+                    <i class="d-block d-sm-none " data-feather="log-in"></i>
+                    <span class="d-none d-sm-block">{{ __('Login') }}</span>
                 </a>
                 <a class="nav-link nav-link-style  btn btn-primary ml-1" href="{{ route('register') }}">
-                    <span>{{ __('Register') }}</span>
+                    <i class="d-block d-sm-none " data-feather="at-sign"></i>
+                    <span class="d-none d-sm-block">{{ __('Register') }}</span>
                 </a>
             @endif
         </ul>
@@ -163,9 +166,9 @@
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto">
                 <a class="navbar-brand" href="{{ route('home') }}">
-                    <span class="brand-logo">{{--Todo:Logo ayarlaması yap--}}
-                         <h2 class="brand-text">{{ getenv('APP_NAME') }}</h2>
-                    </span>
+                                <span class="brand-logo">{{--Todo:Logo ayarlaması yap--}}
+                                     <h2 class="brand-text">{{ getenv('APP_NAME') }}</h2>
+                                </span>
                 </a>
             </li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse">
@@ -276,6 +279,7 @@
         </div>
     </div>
 </div>
+@yield('right-side-bar')
 <!-- END: Content-->
 <div class="sidenav-overlay"></div>
 <div class="drag-target"></div>
@@ -304,13 +308,14 @@
 <!-- BEGIN: Theme JS-->
 <script src="{{ url('app-assets/js/core/app-menu.js') }}"></script>
 <script src="{{ url('app-assets/js/core/app.js') }}"></script>
+<script src="{{ url('app-assets/js/scripts/customizer.min.js') }}"></script>
 <!-- END: Theme JS-->
 <script>
     $(window).on('load', function () {
         if (feather) {
             feather.replace({
                 width: 14,
-                height: 14
+                height: 14,
             });
         }
     })
