@@ -26,7 +26,8 @@
     <livewireStyles/>
 @yield('css')
 <!-- BEGIN: Body-->
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static" data-open="click"
+<body class="vertical-layout vertical-menu-modern navbar-floating footer-static {{ session()->has('menu_collapse') ? session()->get('menu_collapse') : 'menu-expanded'}}"
+      data-open="click"
       data-menu="vertical-menu-modern">
 <!-- BEGIN: Header-->
 <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow">
@@ -84,21 +85,21 @@
                 @if( isset(auth()->user()->id))
                     @if( auth()->user()->preferences->theme == 'light-layout')
                         <a class="nav-link nav-link-style" href="{{ route('set.theme','dark-layout') }}">
-                            <i class="ficon" data-feather="moon" stroke="red"></i>
+                            <svg class="ficon" data-feather="moon" stroke="gray" fill="gray"></svg>
                         </a>
                     @elseif( auth()->user()->preferences->theme == 'dark-layout')
                         <a class="nav-link nav-link-style" href="{{ route('set.theme','light-layout') }}">
-                            <i class="ficon" data-feather="sun"></i>
+                            <svg class="ficon" data-feather="sun" stroke="yellow" fill="yellow"></svg>
                         </a>
                     @endif
                 @else
                     @if( session()->has('theme') AND session()->get('theme') == 'light-layout')
                         <a class="nav-link nav-link-style" href="{{ route('set.theme','dark-layout') }}">
-                            <i class="ficon" data-feather="moon"></i>
+                            <svg class="ficon" stroke="gray" fill="gray" data-feather="moon"></svg>
                         </a>
                     @else
                         <a class="nav-link nav-link-style" href="{{ route('set.theme','light-layout') }}">
-                            <i class="ficon" data-feather="sun"></i>
+                            <svg class="ficon" stroke="yellow" fill="yellow" data-feather="sun"></svg>
                         </a>
                     @endif
                 @endif
@@ -153,7 +154,8 @@
                     </div>
                 </li>
             @else
-                <a class="nav-link nav-link-style  btn btn-secondary ml-1 d-none d-md-block" href="{{ route('login') }}">
+                <a class="nav-link nav-link-style  btn btn-secondary ml-1 d-none d-md-block"
+                   href="{{ route('login') }}">
                     <span class=" px-1">{{ __('Login') }}</span>
                 </a>
                 <a class="nav-link nav-link-style  btn btn-primary ml-1" href="{{ route('register') }}">
@@ -166,19 +168,22 @@
 <!-- END: Header-->
 <!-- BEGIN: Main Menu-->
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-    <div class="navbar-header">
+    <div class="navbar-header" style="height:100px">
         <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mr-auto">
+            <li class="nav-item">
                 <a class="navbar-brand" href="{{ route('home') }}">
-                     <span class="brand-logo">
-                         <img src="{{ url('storage/statics/logo.svg') }}" style="width: 13px;" alt="Logo">
+                     <span class="brand-logo ml-1">
+                         <img src="{{ url('storage/statics/logo.svg') }}" style="width: 20px;" alt="Logo">
                      </span>
                     <span class="brand-text">
                         <h2 class="brand-text" style="font-size: 15px">{{ getenv('APP_NAME') }}</h2>
                     </span>
                 </a>
             </li>
-            <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse">
+            <li class="nav-item nav-toggle">
+                {{-- todo:toggle oldugunda o şekilde tut --}}
+                <a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"
+                   onclick="{{ !session()->has('menu_collapse') ? session()->put('menu_collapse', 'menu_collapsed') : session()->forget('menu_collapse')}}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                          class="feather feather-x d-block d-xl-none text-primary toggle-icon font-medium-4">
@@ -191,7 +196,8 @@
                         <circle cx="12" cy="12" r="10"></circle>
                         <circle cx="12" cy="12" r="3"></circle>
                     </svg>
-                </a></li>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="shadow-bottom"></div>
@@ -203,13 +209,13 @@
                         <li class=" nav-item {{ url()->current() == rtrim( getenv('APP_URL') .'/'. $firstLevelItem->slug,'/') ? 'active' : ''}}">
                             <a class="d-flex align-items-center"
                                href="{{ '/' . $firstLevelItem->slug }}">
-                                <img style="width: 30px" class="ml-1 mr-1"
+                                <img style="width: 30px" class="mr-1"
                                      src="{{ url('storage/statics/icons') .'/' . $firstLevelItem->icon }}" alt="Icon"/>
                                 <span class="menu-title text-truncate">{{ __($firstLevelItem->title )}}</span>
                             </a>
                         </li>
                     @elseif( $firstLevelItem->has_sub_menu == 1 AND $firstLevelItem->sub_menu_level == 1)
-                        <li class=" nav-item">
+                        <li class="nav-item">
                             <a class="d-flex align-items-center" href="#">
                                 <i data-feather="{{ $firstLevelItem->icon }}"></i>
                                 <span class="menu-title text-truncate">{{ __($firstLevelItem->title)  }}</span>
