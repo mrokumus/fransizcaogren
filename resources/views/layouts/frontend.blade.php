@@ -84,7 +84,7 @@
                 @if( isset(auth()->user()->id))
                     @if( auth()->user()->preferences->theme == 'light-layout')
                         <a class="nav-link nav-link-style" href="{{ route('set.theme','dark-layout') }}">
-                            <i class="ficon" data-feather="moon"></i>
+                            <i class="ficon" data-feather="moon" stroke="red"></i>
                         </a>
                     @elseif( auth()->user()->preferences->theme == 'dark-layout')
                         <a class="nav-link nav-link-style" href="{{ route('set.theme','light-layout') }}">
@@ -153,13 +153,11 @@
                     </div>
                 </li>
             @else
-                <a class="nav-link nav-link-style btn btn-secondary" href="{{ route('login') }}">
-                    <i class="d-block d-sm-none " data-feather="log-in"></i>
-                    <span class="d-none d-sm-block">{{ __('Login') }}</span>
+                <a class="nav-link nav-link-style  btn btn-secondary ml-1 d-none d-md-block" href="{{ route('login') }}">
+                    <span class=" px-1">{{ __('Login') }}</span>
                 </a>
                 <a class="nav-link nav-link-style  btn btn-primary ml-1" href="{{ route('register') }}">
-                    <i class="d-block d-sm-none " data-feather="at-sign"></i>
-                    <span class="d-none d-sm-block">{{ __('Register') }}</span>
+                    <span class="d-block px-1">{{ __('Register') }}</span>
                 </a>
             @endif
         </ul>
@@ -172,9 +170,12 @@
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto">
                 <a class="navbar-brand" href="{{ route('home') }}">
-                                <span class="brand-logo">{{--Todo:Logo ayarlaması yap--}}
-                                     <h2 class="brand-text">{{ getenv('APP_NAME') }}</h2>
-                                </span>
+                     <span class="brand-logo">
+                         <img src="{{ url('storage/statics/logo.svg') }}" style="width: 13px;" alt="Logo">
+                     </span>
+                    <span class="brand-text">
+                        <h2 class="brand-text" style="font-size: 15px">{{ getenv('APP_NAME') }}</h2>
+                    </span>
                 </a>
             </li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse">
@@ -197,77 +198,69 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             @foreach( $menuItems as $key => $firstLevelItem)
-                @if($firstLevelItem->nav_id == 1)
-                    <li class=" navigation-header">
-                        <span>{{ __('Dashboard') }}</span>
-                        <i data-feather="more-horizontal"></i>
-                    </li>
-                @elseif($firstLevelItem->nav_id == 2)
-                    <li class=" navigation-header">
-                        <span>{{ __('Learn') }}</span>
-                        <i data-feather="more-horizontal"></i>
-                    </li>
-                @elseif($firstLevelItem->nav_id == 3))
-                <li class=" navigation-header">
-                    <span>{{ __('Social') }}</span>
-                    <i data-feather="more-horizontal"></i>
-                </li>
-                @endif
-                @if( $firstLevelItem->sub_menu_level == 1 AND $firstLevelItem->has_sub_menu == 0)
-                    <li class=" nav-item {{ url()->current() == rtrim(getenv('APP_URL') . getenv('DASH_URL') . $firstLevelItem->slug,'/') ? 'active' : ''}}">
-                        <a class="d-flex align-items-center"
-                           href="{{ getenv('DASH_URL'). $firstLevelItem->slug }}">
-                            <i data-feather="{{ $firstLevelItem->icon }}"></i>
-                            <span class="menu-title text-truncate">{{ __($firstLevelItem->title )}}</span>
-                        </a>
-                    </li>
-                @elseif( $firstLevelItem->has_sub_menu == 1 AND $firstLevelItem->sub_menu_level == 1)
-                    <li class=" nav-item">
-                        <a class="d-flex align-items-center" href="#">
-                            <i data-feather="{{ $firstLevelItem->icon }}"></i>
-                            <span class="menu-title text-truncate">{{ __($firstLevelItem->title)  }}</span>
-                        </a>
-                        <ul class="menu-content">
-                            @foreach($menuItems as $key =>$secondLevelItem)
-                                @if($secondLevelItem->has_sub_menu == 0 AND $firstLevelItem->id == $secondLevelItem->submenu_id)
-                                    <li class="{{ url()->current() == rtrim(getenv('APP_URL') . getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug ,'/') ? 'active' : ''}}">
-                                        <a class="d-flex align-items-center"
-                                           href="{{ getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug  }}">
-                                            <i data-feather="{{ $secondLevelItem->icon }}"></i>
-                                            <span class="menu-item text-truncate">
+                @if($firstLevelItem->status == 1)
+                    @if( $firstLevelItem->sub_menu_level == 1 AND $firstLevelItem->has_sub_menu == 0)
+                        <li class=" nav-item {{ url()->current() == rtrim( getenv('APP_URL') .'/'. $firstLevelItem->slug,'/') ? 'active' : ''}}">
+                            <a class="d-flex align-items-center"
+                               href="{{ '/' . $firstLevelItem->slug }}">
+                                <img style="width: 30px" class="ml-1 mr-1"
+                                     src="{{ url('storage/statics/icons') .'/' . $firstLevelItem->icon }}" alt="Icon"/>
+                                <span class="menu-title text-truncate">{{ __($firstLevelItem->title )}}</span>
+                            </a>
+                        </li>
+                    @elseif( $firstLevelItem->has_sub_menu == 1 AND $firstLevelItem->sub_menu_level == 1)
+                        <li class=" nav-item">
+                            <a class="d-flex align-items-center" href="#">
+                                <i data-feather="{{ $firstLevelItem->icon }}"></i>
+                                <span class="menu-title text-truncate">{{ __($firstLevelItem->title)  }}</span>
+                            </a>
+                            <ul class="menu-content">
+                                @foreach($menuItems as $key =>$secondLevelItem)
+                                    @if($secondLevelItem->has_sub_menu == 0 AND $firstLevelItem->id == $secondLevelItem->submenu_id)
+                                        <li class="{{ url()->current() == rtrim(getenv('APP_URL') . getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug ,'/') ? 'active' : ''}}">
+                                            <a class="d-flex align-items-center"
+                                               href="{{ getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug  }}">
+                                                <i data-feather="{{ $secondLevelItem->icon }}"></i>
+                                                <span class="menu-item text-truncate">
                                                  {{ __($secondLevelItem->title) }}
                                             </span>
-                                        </a>
-                                    </li>
-                                @elseif($secondLevelItem->has_sub_menu == 1 AND $firstLevelItem->id == $secondLevelItem->submenu_id)
-                                    <li>
-                                        <a class="d-flex align-items-center" href="#">
-                                            <i data-feather="{{ $secondLevelItem->icon }}"></i>
-                                            <span class="menu-item text-truncate">
+                                            </a>
+                                        </li>
+                                    @elseif($secondLevelItem->has_sub_menu == 1 AND $firstLevelItem->id == $secondLevelItem->submenu_id)
+                                        <li>
+                                            <a class="d-flex align-items-center" href="#">
+                                                <i data-feather="{{ $secondLevelItem->icon }}"></i>
+                                                <span class="menu-item text-truncate">
                                                 {{ $secondLevelItem->title }}
                                             </span>
-                                        </a>
-                                        <ul class="menu-content">
-                                            @foreach( $menuItems as $key => $thirdLevelItem)
-                                                @if($thirdLevelItem->submenu_id == $secondLevelItem->id)
-                                                    <li class="{{ url()->current() == rtrim(getenv('APP_URL') . getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug . $thirdLevelItem->slug ,'/') ? 'active' : ''}}">
-                                                        <a class="d-flex align-items-center"
-                                                           href="{{ getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug . $thirdLevelItem->slug }}">
+                                            </a>
+                                            <ul class="menu-content">
+                                                @foreach( $menuItems as $key => $thirdLevelItem)
+                                                    @if($thirdLevelItem->submenu_id == $secondLevelItem->id)
+                                                        <li class="{{ url()->current() == rtrim(getenv('APP_URL') . getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug . $thirdLevelItem->slug ,'/') ? 'active' : ''}}">
+                                                            <a class="d-flex align-items-center"
+                                                               href="{{ getenv('DASH_URL') .  $firstLevelItem->slug . '/' . $secondLevelItem->slug . $thirdLevelItem->slug }}">
                                                         <span class="menu-item text-truncate">
                                                             {{ __($thirdLevelItem->title )}}
                                                         </span>
-                                                        </a>
-                                                    </li>
-                                                @endif
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </li>
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
                 @endif
             @endforeach
+            <li class="d-block d-md-none">
+                <a class="nav-link nav-link-style  btn btn-primary ml-1" href="{{ route('login') }}">
+                    <span class=" px-1">{{ __('Login') }}</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
