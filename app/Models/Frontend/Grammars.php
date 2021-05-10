@@ -2,13 +2,14 @@
 
 namespace App\Models\Frontend;
 
-use App\Models\Frontend\GrammarPosts;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use  Laravel\Scout\Searchable;
 class Grammars extends Model
 {
     use HasFactory;
+    use Searchable;
+
 
     protected $table = 'grammar_menus';
 
